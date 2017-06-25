@@ -1,11 +1,7 @@
 package com.atguigu.p2p0224.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,9 +10,6 @@ import com.atguigu.p2p0224.R;
 import com.atguigu.p2p0224.base.BaseFragment;
 import com.atguigu.p2p0224.bean.IndexBean;
 import com.atguigu.p2p0224.common.AppNetConfig;
-import com.atguigu.p2p0224.common.ThreadManager;
-import com.atguigu.p2p0224.utils.HttpUtils;
-import com.atguigu.p2p0224.utils.UIUtils;
 import com.atguigu.p2p0224.view.ProgressView;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
@@ -56,12 +49,12 @@ public class HomeFragment extends BaseFragment {
 
 
     @Override
-    protected String getChildUrl() {
+    public String getChildUrl() {
         return AppNetConfig.INDEX;
     }
 
     @Override
-    protected void setContent(String json) {
+    public void setContent(String json) {
         //解析数据
         IndexBean indexBean = JSON.parseObject(json, IndexBean.class);
         initBanner(indexBean);
@@ -69,7 +62,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initTitle() {
+    public void initTitle() {
         baseTitle.setText("首页");
     }
 

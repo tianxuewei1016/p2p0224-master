@@ -34,7 +34,7 @@ public class InvestFragment extends BaseFragment {
     ViewPager vpInvest;
 
     @Override
-    protected String getChildUrl() {
+    public String getChildUrl() {
         return "";
     }
 
@@ -43,12 +43,12 @@ public class InvestFragment extends BaseFragment {
     *
     * */
     @Override
-    protected void setContent(String json) {
+    public void setContent(String json) {
 
     }
 
     @Override
-    protected void initTitle() {
+    public void initTitle() {
 
 
     }
@@ -56,7 +56,7 @@ public class InvestFragment extends BaseFragment {
     private List<BaseFragment> listFragment;
 
     @Override
-    protected void initData() {
+    public void initData() {
         initViewpager();
         //设置默认选中的TextView
         setSelectTv(tvInvestAll);
