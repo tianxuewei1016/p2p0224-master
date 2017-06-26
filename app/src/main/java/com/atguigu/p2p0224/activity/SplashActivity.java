@@ -3,9 +3,6 @@ package com.atguigu.p2p0224.activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -13,16 +10,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.atguigu.p2p0224.R;
+import com.atguigu.p2p0224.base.BaseActivity;
 import com.atguigu.p2p0224.common.AppManager;
 import com.atguigu.p2p0224.utils.UIUtils;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Bind(R.id.iv_welcome_icon)
     ImageView ivWelcomeIcon;
@@ -31,19 +25,6 @@ public class SplashActivity extends AppCompatActivity {
     @Bind(R.id.activity_splash)
     RelativeLayout activitySplash;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
-
-        AppManager.getInstance().addActivity(this);
-
-        initView();
-        initData();
-        initListener();
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -51,11 +32,11 @@ public class SplashActivity extends AppCompatActivity {
         AppManager.getInstance().removeActivity(this);
     }
 
-    private void initListener() {
+    public void initListener() {
 
     }
 
-    private void initData() {
+    public void initData() {
         //两秒跳转
 //        new Timer().schedule(new TimerTask() {
 //            @Override
@@ -76,11 +57,11 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 //判断账号是否登录过，如果没有登录跳转到登录界面，或者跳转到主界面
-                if (isLogin()){
-                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                if (isLogin()) {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
 
-                }else{
-                    startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
 
                 }
                 //清除动画
@@ -101,15 +82,25 @@ public class SplashActivity extends AppCompatActivity {
     * 判断是否登录过
     * */
     private boolean isLogin() {
-        return true;
+        String name = getUser().getName();
+        if (name.equals("admin")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    private void initView() {
+    public void initView() {
         //第一个参数是 含有占位字符的字符串 第二个参数是占位字符的值
         splashTvVersion.setText(
                 UIUtils.stringFormat(
                         R.string.splash_version,
                         getVersionCode()));
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_splash;
     }
 
     /*
