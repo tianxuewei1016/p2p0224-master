@@ -1,12 +1,17 @@
 package com.atguigu.p2p0224.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.atguigu.p2p0224.R;
+import com.atguigu.p2p0224.activity.IconSettingsActivity;
+import com.atguigu.p2p0224.activity.MainActivity;
 import com.atguigu.p2p0224.base.BaseFragment;
+import com.atguigu.p2p0224.bean.LoginBean;
 import com.atguigu.p2p0224.common.AppNetConfig;
 import com.atguigu.p2p0224.utils.BitmapUtils;
 import com.squareup.picasso.Picasso;
@@ -58,6 +63,18 @@ public class PropertyFragment extends BaseFragment {
     }
 
     @Override
+    public void initListener() {
+        super.initListener();
+        tvSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //起动设置界面
+                startActivity(new Intent(getActivity(),IconSettingsActivity.class));
+            }
+        });
+    }
+
+    @Override
     public void initData() {
         Picasso.with(getActivity())
                 .load(AppNetConfig.BASE_URL + "images/tx.png")
@@ -74,6 +91,11 @@ public class PropertyFragment extends BaseFragment {
                     }
                 })
                 .into(ivMeIcon);
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        LoginBean user = mainActivity.getUser();
+        //设置用户名
+        tvMeName.setText("周杰伦");
     }
 
     @Override
