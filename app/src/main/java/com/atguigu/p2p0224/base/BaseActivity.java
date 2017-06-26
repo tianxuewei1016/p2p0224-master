@@ -60,22 +60,34 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 存储用户信息
+     *
+     * @return
+     */
+    private String spName = "loginbean";
+
     public void saveUser(LoginBean bean) {
-        SharedPreferences sp = getSharedPreferences(LOGIN_BNEN, MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
+        edit.putString("name", bean.getName());
         edit.putString("imageurl", bean.getImageurl());
         edit.putString("iscredit", bean.getIscredit());
-        edit.putString("name", bean.getName());
         edit.putString("phone", bean.getPhone());
         edit.commit();
     }
 
+    /**
+     * 获取用户信息
+     *
+     * @return
+     */
     public LoginBean getUser() {
-        SharedPreferences sp = getSharedPreferences(LOGIN_BNEN, MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
         LoginBean bean = new LoginBean();
-        bean.setImageurl(sp.getString("imageurl", "admin"));
+        bean.setName(sp.getString("name", "admin"));
+        bean.setImageurl(sp.getString("imageurl", ""));
         bean.setIscredit(sp.getString("iscredit", ""));
-        bean.setName(sp.getString("name", ""));
         bean.setPhone(sp.getString("phone", ""));
         return bean;
     }

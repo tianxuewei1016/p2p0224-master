@@ -89,17 +89,27 @@ public class LoginActivity extends BaseActivity {
                 HttpUtils.getInstance().post(AppNetConfig.LOGIN, map, new HttpUtils.OnHttpClientListener() {
                     @Override
                     public void onSuccess(String json) {
-                        Log.d("json", "onSuccess: "+json);
+//                        Log.d("json", "onSuccess: "+json);
                         //手动解析
                         try {
-                            JSONObject object = new JSONObject(json);
-                            boolean isOK = object.getBoolean("succes");
-                            if (isOK) {
+                            JSONObject obj = new JSONObject(json);
+                            boolean isOk = obj.getBoolean("success");
+                            if (isOk) {
                                 //登录成功
-                                LoginBean loginBean = com.alibaba.fastjson.JSONObject.parseObject(json, LoginBean.class);
+//                                LoginBean loginBean = com.alibaba.fastjson.JSONObject.parseObject(json, LoginBean.class);
 
+                                JSONObject data = obj.getJSONObject("data");
+                                String name = data.getString("name");
+                                String imageurl = data.getString("imageurl");
+                                String iscredit = data.getString("iscredit");
+                                String phone = data.getString("phone");
+                                LoginBean bean = new LoginBean();
+                                bean.setIscredit(iscredit);
+                                bean.setName(name);
+                                bean.setPhone(phone);
+                                bean.setImageurl(imageurl);
                                 //存储数据
-                                saveUser(loginBean);
+                                saveUser(bean);
                                 //跳转
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 //结束当前页面
