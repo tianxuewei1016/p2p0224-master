@@ -92,7 +92,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         return bean;
     }
 
-    public void clearSp(){
+    /**
+     * 保存图片地址
+     *
+     * @param image
+     */
+    public void saveImage(String image) {
+        SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("imageurl", image);
+        edit.putBoolean("isFile", true);
+        edit.commit();
+    }
+
+    /**
+     * 获取图片
+     *
+     * @return
+     */
+    public String getImage() {
+        SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
+        boolean isFile = sp.getBoolean("isFile", false);
+        if (isFile) {
+            return sp.getString("imageurl", "");
+        } else {
+            return "";
+        }
+    }
+
+    public void clearSp() {
         //清除sp文件(清除的是sp的内容)
         SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
         sp.edit().clear().commit();
