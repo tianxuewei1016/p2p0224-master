@@ -19,22 +19,26 @@ public class AppManager {
     *
     * */
 
-    private AppManager(){};
+    private AppManager() {
+    }
+
+    ;
 
     private static AppManager appManager = new AppManager();
 
-    public static AppManager getInstance(){
+    public static AppManager getInstance() {
         return appManager;
     }
 
     private Stack<Activity> stack = new Stack<>();
+
     /*
     * 添加activity
     * */
-    public void addActivity(Activity activity){
-        Log.d("stack", "addActivity: "+activity.getClass().toString());
+    public void addActivity(Activity activity) {
+        Log.d("stack", "addActivity: " + activity.getClass().toString());
         //校验
-        if (activity != null){
+        if (activity != null) {
             stack.add(activity);
         }
     }
@@ -43,15 +47,15 @@ public class AppManager {
     * 删除activity
     *
     * */
-    public void removeActivity(Activity activity){
+    public void removeActivity(Activity activity) {
 
 //        Log.d("stack", "removeActivity: "+activity.getClass().toString());
-        if (activity != null){
+        if (activity != null) {
 
-            for (int i = stack.size()-1; i >= 0; i--) {
+            for (int i = stack.size() - 1; i >= 0; i--) {
                 Activity currentActivity = stack.get(i);
                 //Log.d("stack", "currentActivity: "+currentActivity.getClass().toString());
-                if (currentActivity.getClass().equals(activity.getClass())){
+                if (currentActivity.getClass().equals(activity.getClass())) {
 
                     currentActivity.finish();
                     stack.remove(i);
@@ -68,17 +72,16 @@ public class AppManager {
     *
     * */
 
-    public void removeAll(){
+    public void removeAll() {
 
-        for (int i = stack.size()-1; i >=0 ; i++) {
+        for (int i = stack.size() - 1; i >= 0; i--) {
 
             Activity currentActivity = stack.get(i);
 
-            if (currentActivity != null){
+            if (currentActivity != null) {
                 currentActivity.finish();
                 stack.remove(i);
             }
         }
     }
-
 }

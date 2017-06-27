@@ -106,6 +106,7 @@ public class RegisterActivity extends BaseActivity {
                     @Override
                     public void onFailure(String message) {
                         Log.d("register", "onFailure: "+message);
+                        
                     }
                 });
             }
