@@ -59,7 +59,9 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- alipay sdk end -->
-        <activity android:name=".activity.WidthDrawActivity"></activity>
+        <activity android:name=".activity.WidthDrawActivity" />
+        <activity android:name=".activity.GestureVerifyActivity"/>
+        <activity android:name=".activity.GestureEditActivity"/>
     </application>
 
 </manifest>

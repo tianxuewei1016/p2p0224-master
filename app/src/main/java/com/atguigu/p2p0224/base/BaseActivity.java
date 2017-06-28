@@ -120,6 +120,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 保存滑动按钮的状态
+     */
+    public void save(String key, boolean value) {
+        SharedPreferences sp = getSharedPreferences("isChecked", MODE_PRIVATE);
+        sp.edit().putBoolean(key, value).commit();
+    }
+
+    public boolean get(String key) {
+        SharedPreferences sp = getSharedPreferences("isChecked", MODE_PRIVATE);
+        return sp.getBoolean(key, false);
+    }
+
     public void clearSp() {
         //清除sp文件(清除的是sp的内容)
         SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
