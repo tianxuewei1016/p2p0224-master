@@ -89,7 +89,7 @@ public class RegisterActivity extends BaseActivity {
                 HttpUtils.getInstance().post(AppNetConfig.REGISTER, map, new HttpUtils.OnHttpClientListener() {
                     @Override
                     public void onSuccess(String json) {
-                        Log.d("register", "onSuccess: "+json);
+//                        Log.d("register", "onSuccess: "+json);
                         try {
                             JSONObject obj = new JSONObject(json);
                             boolean isExist = obj.getBoolean("isExist");

@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
@@ -31,7 +34,7 @@ public class MyApplication extends Application {
         context = this;
         //初始化crashHandler
         //CrashHandler.getInstance().init(this);
-
+        Logger.addLogAdapter(new AndroidLogAdapter());
         initGallery();
 
         handler = new Handler();
