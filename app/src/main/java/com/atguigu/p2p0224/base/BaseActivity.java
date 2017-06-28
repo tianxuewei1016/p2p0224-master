@@ -137,6 +137,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         //清除sp文件(清除的是sp的内容)
         SharedPreferences sp = getSharedPreferences(spName, MODE_PRIVATE);
         sp.edit().clear().commit();
+
+        SharedPreferences sp2 = getSharedPreferences("isChecked", MODE_PRIVATE);
+        sp2.edit().clear().commit();
     }
 
     @Override
